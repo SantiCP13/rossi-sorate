@@ -135,11 +135,11 @@
         <img src="imagenes/wh.svg" class="w-14 h-14 object-contain drop-shadow-lg" alt="WhatsApp">
     </a>
 
-    <!-- 1. BARRA DE NAVEGACIÓN INTELIGENTE (FONDO SÓLIDO CREMA) -->
-    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-crema border-b border-carbon/10 shadow-sm px-6 md:px-12 py-4 flex justify-between items-center transition-transform duration-300">
+    <!-- 1. BARRA DE NAVEGACIÓN INTELIGENTE (CON DESENFOQUE DE FONDO) -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-crema/90 backdrop-blur-md border-b border-carbon/10 shadow-sm px-6 md:px-12 py-3 md:py-4 flex justify-between items-center transition-transform duration-300">
         <!-- Logo -->
         <div class="flex items-center">
-            <img src="imagenes/logo.webp" class="h-11 md:h-14 w-auto object-contain hover:opacity-85 transition-opacity duration-300" alt="Logo Rossi & Sorate">
+            <img src="imagenes/logo.webp" class="h-10 md:h-14 w-auto object-contain hover:opacity-85 transition-opacity duration-300" alt="Logo Rossi & Sorate">
         </div>
 
         <!-- Links del Menú - Versión Desktop -->
@@ -170,26 +170,49 @@
             </a>
         </div>
 
-        <!-- Botón Menú Móvil -->
-        <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none" aria-label="Abrir menú">
-            <span class="w-6 h-[1.5px] bg-carbon transition-transform duration-300" id="bar1"></span>
-            <span class="w-6 h-[1.5px] bg-carbon transition-opacity duration-300" id="bar2"></span>
-            <span class="w-6 h-[1.5px] bg-carbon transition-transform duration-300" id="bar3"></span>
+        <!-- Botón Menú Móvil (Hamburguesa Mejorada) -->
+        <button id="mobile-menu-btn" class="md:hidden relative w-10 h-10 flex items-center justify-center focus:outline-none z-50 group" aria-label="Abrir menú">
+            <div class="relative w-6 h-4 flex flex-col justify-between">
+                <span class="w-6 h-[1.5px] bg-carbon transition-all duration-300 origin-center" id="bar1"></span>
+                <span class="w-6 h-[1.5px] bg-carbon transition-all duration-300 origin-center" id="bar2"></span>
+                <span class="w-6 h-[1.5px] bg-carbon transition-all duration-300 origin-center" id="bar3"></span>
+            </div>
         </button>
     </nav>
 
-    <!-- MENÚ INTEGRAL MÓVIL (Pantalla Completa) -->
-    <div id="mobile-menu" class="fixed inset-0 bg-cremaClaro z-30 hidden flex-col justify-between p-8 pt-28">
-        <div class="flex flex-col space-y-6 text-2xl tracking-[0.2em] uppercase font-serif text-carbon/90">
-            <a href="#origen" class="mobile-nav-link hover:text-terracota transition-colors block">Origen</a>
-            <a href="#proceso" class="mobile-nav-link hover:text-terracota transition-colors block">El Proceso</a>
-            <a href="#coleccion" class="mobile-nav-link hover:text-terracota transition-colors block">Colección</a>
-            <a href="#galeria" class="mobile-nav-link hover:text-terracota transition-colors block">Galería</a>
-            <a href="#testimonios" class="mobile-nav-link hover:text-terracota transition-colors block">Testimonios</a>
-            <a href="#contacto" class="mobile-nav-link hover:text-terracota transition-colors block">Contacto</a>
+    <!-- MENÚ INTEGRAL MÓVIL (Pantalla Completa Responsive) -->
+    <div id="mobile-menu" class="fixed inset-0 bg-cremaClaro z-40 hidden flex-col justify-between p-8 pt-28 overflow-y-auto h-screen max-h-screen">
+        <!-- Enlaces con Estilo Editorial -->
+        <div class="flex flex-col space-y-6 text-2xl tracking-[0.2em] uppercase font-serif text-carbon/90 mt-4">
+            <a href="#origen" class="mobile-nav-link hover:text-terracota transition-colors block flex items-baseline gap-4 group">
+                <span class="font-sans text-[10px] tracking-widest text-terracota font-semibold opacity-60 group-hover:opacity-100">01</span>
+                <span>Origen</span>
+            </a>
+            <a href="#proceso" class="mobile-nav-link hover:text-terracota transition-colors block flex items-baseline gap-4 group">
+                <span class="font-sans text-[10px] tracking-widest text-terracota font-semibold opacity-60 group-hover:opacity-100">02</span>
+                <span>El Proceso</span>
+            </a>
+            <a href="#coleccion" class="mobile-nav-link hover:text-terracota transition-colors block flex items-baseline gap-4 group">
+                <span class="font-sans text-[10px] tracking-widest text-terracota font-semibold opacity-60 group-hover:opacity-100">03</span>
+                <span>Colección</span>
+            </a>
+            <a href="#galeria" class="mobile-nav-link hover:text-terracota transition-colors block flex items-baseline gap-4 group">
+                <span class="font-sans text-[10px] tracking-widest text-terracota font-semibold opacity-60 group-hover:opacity-100">04</span>
+                <span>Galería</span>
+            </a>
+            <a href="#testimonios" class="mobile-nav-link hover:text-terracota transition-colors block flex items-baseline gap-4 group">
+                <span class="font-sans text-[10px] tracking-widest text-terracota font-semibold opacity-60 group-hover:opacity-100">05</span>
+                <span>Testimonios</span>
+            </a>
+            <a href="#contacto" class="mobile-nav-link hover:text-terracota transition-colors block flex items-baseline gap-4 group">
+                <span class="font-sans text-[10px] tracking-widest text-terracota font-semibold opacity-60 group-hover:opacity-100">06</span>
+                <span>Contacto</span>
+            </a>
         </div>
-        <div class="space-y-6">
-            <a href="https://wa.me/573000000000" target="_blank" class="w-full text-center bg-[#B8502C] text-white block py-4 text-xs tracking-[0.25em] font-bold uppercase">
+        
+        <!-- Acciones Inferiores del Menú Móvil -->
+        <div class="space-y-6 mt-12 pb-8 border-t border-carbon/5 pt-8">
+            <a href="https://wa.me/573000000000" target="_blank" class="w-full text-center bg-[#B8502C] text-white block py-4 text-xs tracking-[0.25em] font-bold uppercase transition-all duration-300 hover:bg-carbon">
                 CONTACTAR
             </a>
             <p class="text-[9px] text-center tracking-widest text-carbon/40 uppercase">© 2026 ROSSI & SORATE</p>
@@ -223,7 +246,6 @@
             <!-- Indicador Descubrir -->
             <div class="flex flex-col items-center gap-6 opacity-0" id="hero-cta">
                 <span class="text-[9px] tracking-[0.4em] text-gray-400 uppercase">DESCUBRIR</span>
-                
                 
                 <!-- Botón Explorar Colección de Gran Formato y Alto Contraste -->
                 <a href="#coleccion" class="magnetic-btn group relative overflow-hidden bg-[#1C1611] text-crema px-12 md:px-16 py-5 text-[11px] font-bold tracking-[0.35em] uppercase inline-flex items-center gap-4 transition-all duration-500 border border-carbon hover:text-carbon shadow-[0_20px_50px_rgba(28,22,17,0.18)] hover:shadow-2xl">
@@ -829,6 +851,9 @@
         let lastScrollY = window.scrollY;
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
+            // No ocultar la barra si el menú móvil de pantalla completa está abierto
+            if (isMenuOpen) return;
+
             if (window.scrollY > lastScrollY && window.scrollY > 150) {
                 gsap.to(navbar, { y: '-100%', duration: 0.4, ease: 'power2.out' });
             } else {
@@ -851,7 +876,7 @@
         });
 
 
-        // 4. Mapeo Seguro de Enlaces Internos con Scroll de Lenis
+        // 4. Mapeo Seguro de Enlaces Internos con Scroll de Lenis (Compatible con Cierre de Menú Móvil)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
@@ -860,11 +885,19 @@
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
-                        lenis.scrollTo(targetElement, {
-                            offset: -90, 
-                            duration: 1.2,
-                            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-                        });
+                        const menuWasOpen = isMenuOpen;
+                        if (menuWasOpen) {
+                            closeMobileMenu();
+                        }
+                        
+                        // Retardo estratégico de 300ms para permitir que el menú móvil desaparezca antes de comenzar el scroll
+                        setTimeout(() => {
+                            lenis.scrollTo(targetElement, {
+                                offset: -90, 
+                                duration: 1.2,
+                                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                            });
+                        }, menuWasOpen ? 300 : 0);
                     }
                 }
             });
@@ -888,7 +921,7 @@
         }
 
 
-        // 6. Menú de Pantalla Completa para Móviles
+        // 6. Menú de Pantalla Completa para Móviles (Animaciones coordinadas mediante Clases CSS + GSAP)
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const bar1 = document.getElementById('bar1');
@@ -896,41 +929,49 @@
         const bar3 = document.getElementById('bar3');
         let isMenuOpen = false;
 
-        mobileMenuBtn.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            if (isMenuOpen) {
-                mobileMenu.classList.remove('hidden');
-                mobileMenu.classList.add('flex');
-                gsap.to(mobileMenu, { opacity: 1, duration: 0.4, ease: "power2.out" });
-                gsap.fromTo(".mobile-nav-link", 
-                    { y: 30, opacity: 0 }, 
-                    { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "power3.out", delay: 0.1 }
-                );
-                gsap.to(bar1, { rotation: 45, y: 7.5, duration: 0.3 });
-                gsap.to(bar2, { opacity: 0, duration: 0.3 });
-                gsap.to(bar3, { rotation: -45, y: -7.5, duration: 0.3 });
-                lenis.stop();
-            } else {
-                closeMobileMenu();
-            }
-        });
+        function openMobileMenu() {
+            isMenuOpen = true;
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+            
+            // Animación de entrada con GSAP para opacidad y deslizamiento del texto
+            gsap.to(mobileMenu, { opacity: 1, duration: 0.4, ease: "power2.out" });
+            gsap.fromTo(".mobile-nav-link", 
+                { y: 25, opacity: 0 }, 
+                { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: "power3.out", delay: 0.1 }
+            );
+
+            // Transformación del botón hamburguesa a "X" usando clases CSS puras y hardware acelerado
+            bar1.classList.add('translate-y-[7px]', 'rotate-45');
+            bar2.classList.add('opacity-0', 'scale-x-0');
+            bar3.classList.add('-translate-y-[7px]', '-rotate-45');
+            
+            lenis.stop();
+        }
 
         function closeMobileMenu() {
             isMenuOpen = false;
-            gsap.to(mobileMenu, { opacity: 0, duration: 0.3, ease: "power2.in", onComplete: () => {
+            
+            // Animación de salida progresiva
+            gsap.to(mobileMenu, { opacity: 0, duration: 0.35, ease: "power2.inOut", onComplete: () => {
                 mobileMenu.classList.add('hidden');
                 mobileMenu.classList.remove('flex');
             }});
-            gsap.to(bar1, { rotation: 0, y: 0, duration: 0.3 });
-            gsap.to(bar2, { opacity: 1, duration: 0.3 });
-            gsap.to(bar3, { rotation: 0, y: 0, duration: 0.3 });
+            
+            // Restauración del botón de hamburguesa a su estado original
+            bar1.classList.remove('translate-y-[7px]', 'rotate-45');
+            bar2.classList.remove('opacity-0', 'scale-x-0');
+            bar3.classList.remove('-translate-y-[7px]', '-rotate-45');
+            
             lenis.start();
         }
 
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', () => {
+        mobileMenuBtn.addEventListener('click', () => {
+            if (!isMenuOpen) {
+                openMobileMenu();
+            } else {
                 closeMobileMenu();
-            });
+            }
         });
 
 
