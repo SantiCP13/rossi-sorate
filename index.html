@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROSSI & SORATE — Tejido de Origen</title>
-        +<!-- Icono de la pestaña (Favicon) -->
+    <title>Rossi & Sorate - Tejido de Origen</title>
+    <!-- Icono de la pestaña (Favicon) -->
     <link rel="icon" type="image/webp" href="imagenes/logo.webp">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,7 +12,7 @@
     <!-- Fuentes Elegantes de Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Configuración del tema para coincidir exactamente con el diseño -->
     <script>
@@ -43,289 +43,450 @@
         .lenis.lenis-smooth {
             scroll-behavior: auto !important;
         }
-        .lenis.lenis-smooth [data-lenis-prevent] {
-            overscroll-behavior: contain;
-        }
         .lenis.lenis-stopped {
             overflow: hidden;
         }
+        
         /* Ajuste de degradado del Hero para simular el fade a crema en el fondo */
         .hero-gradient {
-            background: linear-gradient(180deg, rgba(245, 242, 235, 0.6) 0%, rgba(245, 242, 235, 1) 90%);
+            background: linear-gradient(180deg, rgba(245, 242, 235, 0.1) 0%, rgba(245, 242, 235, 0.5) 60%, rgba(245, 242, 235, 1) 100%);
+        }
+
+        /* Enlaces con subrayado interactivo elegante */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #B8502C;
+            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Estilo de barra de scroll minimalista corporativa */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F5F2EB;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1C1611;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B8502C;
+        }
+
+        /* Transición de elevación 3D para tarjetas de productos */
+        .product-card-wrapper {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .product-card-wrapper:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -15px rgba(28, 22, 17, 0.1);
+        }
+
+        /* Animación para el cargador de la página */
+        #loader {
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
+        }
+
+        /* Efecto de zoom controlado para imágenes en Modal */
+        .zoom-container {
+            overflow: hidden;
+        }
+        .zoom-container img {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .zoom-container:hover img {
+            transform: scale(1.06);
         }
     </style>
 </head>
-<body class="bg-crema text-carbon font-sans antialiased overflow-x-hidden">
+<body class="bg-crema text-carbon font-sans antialiased overflow-x-hidden selection:bg-terracota/20 selection:text-carbon">
+
+    <!-- PRELOADER EDITORIAL -->
+    <div id="loader" class="fixed inset-0 bg-crema z-50 flex flex-col items-center justify-center">
+        <div class="text-center space-y-4">
+            <h2 class="font-serif text-3xl md:text-4xl tracking-[0.2em] text-carbon italic font-light animate-pulse">ROSSI & SORATE</h2>
+            <div class="w-16 h-[1px] bg-terracota mx-auto overflow-hidden relative">
+                <div class="absolute inset-0 bg-carbon translate-x-[-100%] animate-[shimmer_1.5s_infinite]"></div>
+            </div>
+            <p class="text-[9px] tracking-[0.3em] text-gray-400 uppercase">Tejido de Origen</p>
+        </div>
+    </div>
+    <style>
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+    </style>
+
+    <!-- LÍNEA DE PROGRESO DE LECTURA CORPORATIVA -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-terracota z-50 w-0 transition-all duration-100"></div>
 
     <!-- BOTÓN FLOTANTE DE WHATSAPP -->
     <a href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer" 
-       class="fixed bottom-6 right-6 z-50 transition-transform hover:scale-110 flex items-center justify-center" 
+       class="fixed bottom-6 right-6 z-40 transition-transform hover:scale-105 active:scale-95 duration-200 block" 
        aria-label="Escríbenos por WhatsApp">
-        
-        <!-- 
-          Reemplaza 'whatsapp.png' por el nombre y extensión exacta de tu archivo 
-          (ej. whatsapp.svg, whatsapp.webp, etc.)
-        -->
-        <img src="imagenes/wh.svg" class="w-14 h-14 object-contain drop-shadow-md" alt="WhatsApp">
+        <img src="imagenes/wh.svg" class="w-14 h-14 object-contain drop-shadow-lg" alt="WhatsApp">
     </a>
 
-    <!-- 1. BARRA DE NAVEGACIÓN -->
-    <nav class="fixed top-0 left-0 w-full z-40 bg-crema/90 backdrop-blur-md border-b border-carbon/5 px-6 md:px-12 py-3 flex justify-between items-center">
-        <!-- Logo Centrado Visualmente en Pantalla -->
-        <!-- REEMPLÁZALO POR ESTE: -->
-<div class="flex items-center">
-    <!-- Si tu logo es WebP -->
-    <img src="imagenes/logo.webp" class="h-14 w-auto object-contain" alt="Logo Rossi & Sorate">
-    
-    <!-- O si tu logo es SVG (Muy recomendado para logos) -->
-    <!-- <img src="imagenes/logo.svg" class="h-10 w-auto object-contain" alt="Logo Rossi & Sorate"> -->
-</div>
+    <!-- 1. BARRA DE NAVEGACIÓN INTELIGENTE (FONDO SÓLIDO CREMA) -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-crema border-b border-carbon/10 shadow-sm px-6 md:px-12 py-4 flex justify-between items-center transition-transform duration-300">
+        <!-- Logo -->
+        <div class="flex items-center">
+            <img src="imagenes/logo.webp" class="h-11 md:h-14 w-auto object-contain hover:opacity-85 transition-opacity duration-300" alt="Logo Rossi & Sorate">
+        </div>
 
-        <!-- Links del Menú -->
-        <div class="flex items-center space-x-6 md:space-x-8 text-xs tracking-widest uppercase font-medium">
-            <a href="#origen" class="hover:text-terracota transition-colors">Origen</a>
-            <a href="#coleccion" class="hover:text-terracota transition-colors">Colección</a>
-            <a href="#testimonios" class="hover:text-terracota transition-colors">Testimonios</a>
+        <!-- Links del Menú - Versión Desktop -->
+        <div class="hidden md:flex items-center space-x-9 text-[11px] tracking-[0.25em] uppercase font-semibold">
+            <a href="#origen" class="nav-link relative text-carbon/80 hover:text-terracota transition-colors">
+                Origen
+            </a>
+            <a href="#proceso" class="nav-link relative text-carbon/80 hover:text-terracota transition-colors">
+                Proceso
+            </a>
+            <a href="#coleccion" class="nav-link relative text-carbon/80 hover:text-terracota transition-colors">
+                Colección
+            </a>
+            <a href="#galeria" class="nav-link relative text-carbon/80 hover:text-terracota transition-colors">
+                Galería
+            </a>
+            <a href="#testimonios" class="nav-link relative text-carbon/80 hover:text-terracota transition-colors">
+                Testimonios
+            </a>
+            <a href="#contacto" class="nav-link relative text-carbon/80 hover:text-terracota transition-colors">
+                Contacto
+            </a>
            
-            <!-- Botón Contactar con el tono exacto terracota -->
-            <a href="https://wa.me/573000000000" target="_blank" class="bg-[#B8502C] hover:bg-[#a04323] text-white px-5 py-3 text-xs tracking-widest font-bold uppercase transition-all duration-300">
-                CONTACTAR
+            <!-- Botón Contactar Llamativo -->
+            <a href="https://wa.me/573000000000" target="_blank" class="magnetic-btn group relative overflow-hidden inline-flex items-center justify-center border border-terracota bg-[#B8502C] px-7 py-3.5 text-[10px] tracking-[0.25em] font-bold uppercase transition-all duration-300 text-white hover:text-terracota">
+                <span class="relative z-10">CONTACTAR</span>
+                <span class="absolute inset-0 bg-cremaClaro translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0"></span>
             </a>
         </div>
+
+        <!-- Botón Menú Móvil -->
+        <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none" aria-label="Abrir menú">
+            <span class="w-6 h-[1.5px] bg-carbon transition-transform duration-300" id="bar1"></span>
+            <span class="w-6 h-[1.5px] bg-carbon transition-opacity duration-300" id="bar2"></span>
+            <span class="w-6 h-[1.5px] bg-carbon transition-transform duration-300" id="bar3"></span>
+        </button>
     </nav>
 
-    <!-- 2. SECCIÓN HERO (Fondo con video en bucle local) -->
-<section class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
-    
-    <!-- Contenedor del video de fondo -->
-    <div class="absolute inset-0 z-0 overflow-hidden">
-        <!-- 
-          Atributos clave para que funcione correctamente:
-          - autoplay: El video inicia solo.
-          - loop: El video se repite infinitamente.
-          - muted: Obligatorio para permitir el autoplay.
-          - playsinline: Evita que se abra el reproductor del celular.
-        -->
-        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-40 filter grayscale contrast-205">
-            <!-- Ruta local hacia tu carpeta de videos -->
-            <source src="videos/tejido.mp4" type="video/mp4">
-        </video>
-        
-        <!-- Capa de degradado para suavizar los bordes -->
-        <div class="absolute inset-0 hero-gradient"></div>
-    </div>
-
-    <!-- Contenido textual -->
-    <div class="relative z-10 max-w-3xl flex flex-col items-center">
-        <span class="text-[10px] md:text-xs tracking-[0.4em] text-terracota uppercase font-semibold mb-4 opacity-0" id="hero-sub">
-            TEJIDO DE ORIGEN
-        </span>
-        <h1 class="font-serif text-5xl md:text-8xl tracking-wide text-carbon mb-6 opacity-0" id="hero-title">
-            ROSSI & SORATE
-        </h1>
-        <p class="font-sans text-xs md:text-sm text-gray-600 max-w-xl tracking-wider leading-relaxed mb-10 opacity-0" id="hero-desc">
-            Artesanía textil colombiana. Piezas únicas hechas a mano, llevando consigo la memoria de nuestras montañas y el calor de nuestras raíces.
-        </p>
-        
-        <!-- Indicador Descubrir -->
-        <div class="flex flex-col items-center gap-4 opacity-0" id="hero-cta">
-            <span class="text-[9px] tracking-[0.3em] text-gray-400 uppercase">DESCUBRIR</span>
-            <div class="w-[1px] h-12 bg-carbon/20"></div>
-            
-            <!-- Botón Explorar Colección -->
-            <a href="#coleccion" class="bg-[#241F1C] hover:bg-black text-white px-6 py-4 text-xs font-medium tracking-widest uppercase flex items-center gap-3 transition-colors duration-300 shadow-md">
-                EXPLORAR COLECCIÓN <span class="text-sm">→</span>
+    <!-- MENÚ INTEGRAL MÓVIL (Pantalla Completa) -->
+    <div id="mobile-menu" class="fixed inset-0 bg-cremaClaro z-30 hidden flex-col justify-between p-8 pt-28">
+        <div class="flex flex-col space-y-6 text-2xl tracking-[0.2em] uppercase font-serif text-carbon/90">
+            <a href="#origen" class="mobile-nav-link hover:text-terracota transition-colors block">Origen</a>
+            <a href="#proceso" class="mobile-nav-link hover:text-terracota transition-colors block">El Proceso</a>
+            <a href="#coleccion" class="mobile-nav-link hover:text-terracota transition-colors block">Colección</a>
+            <a href="#galeria" class="mobile-nav-link hover:text-terracota transition-colors block">Galería</a>
+            <a href="#testimonios" class="mobile-nav-link hover:text-terracota transition-colors block">Testimonios</a>
+            <a href="#contacto" class="mobile-nav-link hover:text-terracota transition-colors block">Contacto</a>
+        </div>
+        <div class="space-y-6">
+            <a href="https://wa.me/573000000000" target="_blank" class="w-full text-center bg-[#B8502C] text-white block py-4 text-xs tracking-[0.25em] font-bold uppercase">
+                CONTACTAR
             </a>
+            <p class="text-[9px] text-center tracking-widest text-carbon/40 uppercase">© 2026 ROSSI & SORATE</p>
         </div>
     </div>
-</section>
 
-    <!-- 3. NUESTRA HISTORIA (Layout Desalineado) -->
-    <section id="origen" class="py-24 md:py-32 px-6 md:px-12 max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+    <!-- 2. SECCIÓN HERO (Fondo con video cinemático y Parallax) -->
+    <section class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20 overflow-hidden">
+        
+        <!-- Contenedor del video de fondo con Parallax -->
+        <div class="absolute inset-0 z-0 overflow-hidden" id="hero-video-container">
+            <video autoplay loop muted playsinline class="w-full h-[120%] object-cover opacity-35 filter grayscale contrast-[1.15] brightness-[0.95]" id="hero-video">
+                <source src="videos/tejido.mp4" type="video/mp4">
+            </video>
+            <!-- Capa de degradado refinada -->
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+
+        <!-- Contenido textual -->
+        <div class="relative z-10 max-w-4xl flex flex-col items-center">
+            <span class="text-[10px] md:text-xs tracking-[0.5em] text-terracota uppercase font-bold mb-5 opacity-0" id="hero-sub">
+                TEJIDO DE ORIGEN
+            </span>
+            <h1 class="font-serif text-5xl md:text-8xl tracking-wide text-carbon mb-8 opacity-0 italic leading-tight" id="hero-title">
+                ROSSI & SORATE
+            </h1>
+            <p class="font-sans text-xs md:text-sm text-gray-600 max-w-xl tracking-[0.12em] leading-relaxed mb-14 opacity-0 px-2" id="hero-desc">
+                Artesanía textil colombiana. Piezas únicas hechas a mano, llevando consigo la memoria de nuestras montañas y el calor de nuestras raíces.
+            </p>
             
-            <!-- Imagen con contendor decorativo detrás -->
-            <div class="relative group" id="historia-img">
-                <div class="absolute -inset-3 bg-cremaClaro/60 border border-carbon/5 -z-10 translate-x translate-y"></div>
-                <div class="overflow-hidden">
+            <!-- Indicador Descubrir -->
+            <div class="flex flex-col items-center gap-6 opacity-0" id="hero-cta">
+                <span class="text-[9px] tracking-[0.4em] text-gray-400 uppercase">DESCUBRIR</span>
+                
+                
+                <!-- Botón Explorar Colección de Gran Formato y Alto Contraste -->
+                <a href="#coleccion" class="magnetic-btn group relative overflow-hidden bg-[#1C1611] text-crema px-12 md:px-16 py-5 text-[11px] font-bold tracking-[0.35em] uppercase inline-flex items-center gap-4 transition-all duration-500 border border-carbon hover:text-carbon shadow-[0_20px_50px_rgba(28,22,17,0.18)] hover:shadow-2xl">
+                    <span class="relative z-10 transition-colors duration-500 group-hover:text-carbon">EXPLORAR COLECCIÓN</span>
+                    <span class="relative z-10 text-base transition-transform duration-500 ease-out group-hover:translate-x-3 group-hover:text-carbon">→</span>
+                    <span class="absolute inset-0 bg-crema translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. NUESTRA HISTORIA (Layout Desalineado & Parallax) -->
+    <section id="origen" class="py-28 md:py-36 px-6 md:px-12 max-w-6xl mx-auto overflow-hidden relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
+            
+            <!-- Imagen con contenedor decorativo flotante -->
+            <div class="relative group" id="historia-img-wrapper">
+                
+                <div class="overflow-hidden relative aspect-[4/5] md:aspect-[3/4]">
                     <!-- Foto de manos artesanas tejiendo -->
-                    <img src="imagenes/1.webp" 
-                         class="w-full h-[350px] md:h-[500px] object-cover shadow-sm transition-transform duration-700 group-hover:scale-105" 
+                    <img id="historia-img" src="imagenes/1.webp" 
+                         class="w-full h-[120%] absolute -top-10 left-0 object-cover shadow-sm hover:scale-105" 
                          alt="Manos artesanas en el telar">
                 </div>
             </div>
 
             <!-- Textos de Historia -->
-            <div class="space-y-6 md:space-y-8" id="historia-text">
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-[1px] bg-terracota"></div>
-                    <span class="text-[10px] md:text-xs tracking-[0.3em] text-terracota uppercase font-semibold">NUESTRA HISTORIA</span>
+            <div class="space-y-8 md:pr-4" id="historia-text">
+                <div class="flex flex-col items-start gap-4">
+                    
+                    <div class="flex items-center gap-3 pt-2">
+                        <span class="font-mono text-xs text-terracota font-semibold">01 /</span>
+                        <div class="w-10 h-[1px] bg-terracota"></div>
+                        <span class="text-[10px] md:text-xs tracking-[0.4em] text-terracota uppercase font-bold">NUESTRA HISTORIA</span>
+                    </div>
                 </div>
                 
-                <h2 class="font-serif text-3xl md:text-5xl leading-tight text-carbon">
-                    EL VALOR DEL TIEMPO Y<br>LA MEMORIA
+                <h2 class="font-serif text-4xl md:text-5xl leading-tight text-carbon tracking-wide">
+                    EL VALOR DEL TIEMPO Y<br><span class="italic font-light text-carbon/80">LA MEMORIA</span>
                 </h2>
                 
-                <div class="font-sans text-xs md:text-sm text-gray-600 space-y-5 tracking-wider leading-relaxed">
-                    <p>
-                        En Rossi & Sorate no fabricamos en masa; tejemos historias. Cada ruana, cada estola, es el resultado de horas de trabajo paciente en los telares de los Andes colombianos.
+                <div class="font-sans text-xs md:text-sm text-gray-600 space-y-6 tracking-[0.1em] leading-relaxed">
+                    <!-- Letra Capitular Editorial -->
+                    <p class="clear-none">
+                        <span class="font-serif text-6xl text-terracota float-left mr-3.5 mt-1.5 leading-[0.75] font-light">E</span>n Rossi & Sorate no fabricamos en masa; tejemos historias. Cada ruana, cada estola, es el resultado de horas de trabajo paciente en los telares de los Andes colombianos.
                     </p>
                     <p>
-                        Nuestras lanas son hiladas con la sabiduría de generaciones pasadas, respetando el entorno y honrando a las manos que las transforman. Vestir una pieza nuestra es abrazar el calor de un hogar artesanal y llevar consigo la dignidad de nuestras raíces.
+                        Nuestras lanas son hiladas con la sabiduría de generaciones pasadas, respetando el entorno y honrando a las manos que las transforman. Vestir una pieza nuestra es abrazar el calor de un hogar artesanal andino y llevar consigo la dignidad de nuestras raíces.
                     </p>
                 </div>
-
-        
             </div>
 
         </div>
     </section>
 
-    <!-- 4. SECCIÓN COLECCIÓN (Ruanas) -->
-    <section id="coleccion" class="py-24 md:py-32 bg-cremaClaro border-t border-b border-carbon/5">
+    <!-- NUEVO: EL PROCESO ARTESANAL (Sección 02) -->
+    <section id="proceso" class="py-28 md:py-36 bg-carbon text-crema relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center mb-24 space-y-3">
+                <div class="flex justify-center items-center gap-3">
+                    <span class="font-mono text-xs text-terracota font-semibold">02 /</span>
+                    <span class="text-[10px] md:text-xs tracking-[0.4em] text-crema/60 uppercase font-bold">CON PASIÓN Y CALMA</span>
+                </div>
+                <h2 class="font-serif text-4xl md:text-6xl tracking-wide italic font-light">EL ARTE DE LA LENTITUD</h2>
+            </div>
+
+            <!-- Pasos del Proceso (Diseño Asimétrico y Editorial) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 divide-y md:divide-y-0 md:divide-x divide-crema/10">
+                <!-- Paso 1 -->
+                <div class="pt-8 md:pt-0 md:px-8 space-y-6 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <span class="font-mono text-xs text-terracota block">Paso I — Esquila e Hilado</span>
+                        <h3 class="font-serif text-2xl tracking-wide text-cremaClaro">LANA CON RESPETO</h3>
+                        <p class="font-sans text-xs md:text-sm text-crema/60 tracking-[0.08em] leading-relaxed font-light">
+                            La lana virgen de oveja se obtiene respetando rigurosamente los ciclos naturales del animal. Posteriormente, artesanas andinas la limpian e hilan con el huso tradicional para garantizar hebras fuertes y texturas auténticas.
+                        </p>
+                    </div>
+                    <div class="h-[1px] bg-terracota/30 w-12 transition-all duration-500 group-hover:w-full pt-4"></div>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="pt-8 md:pt-0 md:px-8 space-y-6 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <span class="font-mono text-xs text-terracota block">Paso II — Tintura Botánica</span>
+                        <h3 class="font-serif text-2xl tracking-wide text-cremaClaro">LOS COLORES DE LA TIERRA</h3>
+                        <p class="font-sans text-xs md:text-sm text-crema/60 tracking-[0.08em] leading-relaxed font-light">
+                            Utilizamos pigmentos extraídos directamente de la naturaleza. Hojas de nogal, líquenes, cortezas y semillas silvestres se hierven en agua de manantial para teñir las fibras de forma orgánica y sostenible.
+                        </p>
+                    </div>
+                    <div class="h-[1px] bg-terracota/30 w-12 transition-all duration-500 group-hover:w-full pt-4"></div>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="pt-8 md:pt-0 md:px-8 space-y-6 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <span class="font-mono text-xs text-terracota block">Paso III — Telar de Pedal</span>
+                        <h3 class="font-serif text-2xl tracking-wide text-cremaClaro">EL RITMO DEL TIEMPO</h3>
+                        <p class="font-sans text-xs md:text-sm text-crema/60 tracking-[0.08em] leading-relaxed font-light">
+                            El entretejido final se realiza en pesados telares manuales de pedal y de marco. El movimiento coordinado de pies y manos crea patrones irrepetibles, impregnando el alma del tejedor en cada centímetro de tela.
+                        </p>
+                    </div>
+                    <div class="h-[1px] bg-terracota/30 w-12 transition-all duration-500 group-hover:w-full pt-4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SECCIÓN COLECCIÓN -->
+    <section id="coleccion" class="py-28 md:py-36 bg-cremaClaro border-t border-b border-carbon/5">
         <div class="max-w-6xl mx-auto px-6 md:px-12">
             
-            <div class="text-center mb-16 space-y-2">
-                <h2 class="font-serif text-4xl md:text-6xl text-carbon tracking-wide">RUANAS</h2>
-                <p class="text-[10px] md:text-xs tracking-[0.3em] text-gray-500 uppercase">EL ABRIGO DE LOS ANDES</p>
-                <p class="text-[11px] text-gray-400 italic">Haz clic en la imagen para ver medidas y detalles</p>
+            <div class="text-center mb-20 space-y-3">
+                <div class="flex justify-center items-center gap-3">
+                    <span class="font-mono text-xs text-terracota font-semibold">03 /</span>
+                    <span class="text-[10px] md:text-xs tracking-[0.4em] text-gray-500 uppercase font-semibold">EL ABRIGO DE LOS ANDES</span>
+                </div>
+                <h2 class="font-serif text-4xl md:text-6xl text-carbon tracking-wider italic font-light">RUANAS</h2>
+                <p class="text-[11px] text-gray-400 italic tracking-wider">Haz clic en la imagen para ver medidas y detalles</p>
             </div>
 
             <!-- Grilla de Productos -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14">
                 
                 <!-- Ruana 1 -->
-                <div class="group flex flex-col items-center text-center product-card">
-                    <!-- Contenedor de Imagen con Efecto Hover para Detalles -->
-                    <div class="relative w-full overflow-hidden mb-6 bg-crema cursor-pointer" 
+                <div class="product-card-wrapper group flex flex-col items-center text-center relative bg-cremaClaro p-2 border border-carbon/5 shadow-[0_15px_35px_rgba(28,22,17,0.03)]">
+                    <div class="relative w-full aspect-[3/4] overflow-hidden mb-6 bg-crema p-4 border border-carbon/5 shadow-sm cursor-pointer" 
                          onclick="openRuanaModal('RUANA ANDINA', 'COP $280,000', 'imagenes/ruana 1.jpg', '100% Lana de oveja virgen, hilada a mano con huso tradicional. Tinturada con pigmentos vegetales obtenidos de plantas nativas de los Andes.', '150 cm de ancho x 120 cm de largo (Talla única unisex).', 'https://wa.me/573000000000?text=Hola!%20Me%20gustar%C3%ADa%20encargar%20la%20Ruana%20Andina%20de%20COP%20%24280%2C000')">
                         
-                        <!-- Overlay elegante al pasar el cursor -->
-                        <div class="absolute inset-0 bg-carbon/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center">
-                            <span class="text-crema text-xs tracking-widest font-bold border border-crema px-4 py-2 uppercase bg-carbon/40 backdrop-blur-sm">VER DETALLES</span>
+                        <div class="absolute inset-4 border border-carbon/5 opacity-40 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="absolute inset-4 bg-carbon/45 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center">
+                            <span class="text-crema text-[10px] tracking-[0.3em] font-bold border border-crema/40 px-5 py-2.5 uppercase bg-carbon/30 backdrop-blur-sm transition-transform duration-500 translate-y-3 group-hover:translate-y-0">VER DETALLES</span>
                         </div>
                         
                         <img src="imagenes/ruana 1.jpg" 
-                             class="w-full h-[380px] md:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105" 
+                             class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105" 
                              alt="Ruana Andina">
                     </div>
                     
-                    <h3 class="font-serif text-lg tracking-wide mb-1 text-carbon">RUANA ANDINA</h3>
-                    <span class="font-sans text-[11px] tracking-widest text-gray-500 mb-4">COP $280,000</span>
+                    <h3 class="font-serif text-xl tracking-wide mb-1 text-carbon">RUANA ANDINA</h3>
+                    <span class="font-sans text-[11px] tracking-[0.2em] text-gray-400 mb-5">COP $280,000</span>
                     
-                    <!-- Botón de Acción WhatsApp -->
+                    <!-- Botón de Compra Sólido -->
                     <a href="https://wa.me/573000000000?text=Hola!%20Me%20gustar%C3%ADa%20encargar%20la%20Ruana%20Andina%20de%20COP%20%24280%2C000" 
                        target="_blank" 
-                       class="w-full bg-[#B8502C] hover:bg-[#a04323] text-white text-[10px] font-bold tracking-widest uppercase py-3 transition-colors duration-300 shadow-sm">
-                        PEDIR POR WHATSAPP →
+                       class="group relative overflow-hidden w-full bg-[#1C1611] text-crema text-[10px] font-bold tracking-[0.25em] uppercase py-4 transition-all duration-500 border border-carbon hover:text-carbon shadow-sm">
+                        <span class="relative z-10 transition-colors duration-500 group-hover:text-carbon">PEDIR POR WHATSAPP →</span>
+                        <span class="absolute inset-0 bg-crema translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0"></span>
                     </a>
                 </div>
 
                 <!-- Ruana 2 -->
-                <div class="group flex flex-col items-center text-center product-card">
-                    <div class="relative w-full overflow-hidden mb-6 bg-crema cursor-pointer"
+                <div class="product-card-wrapper group flex flex-col items-center text-center relative bg-cremaClaro p-2 border border-carbon/5 shadow-[0_15px_35px_rgba(28,22,17,0.03)]">
+                    <div class="relative w-full aspect-[3/4] overflow-hidden mb-6 bg-crema p-4 border border-carbon/5 shadow-sm cursor-pointer"
                          onclick="openRuanaModal('RUANA TIERRA', 'COP $320,000', 'imagenes/ruana 2.jpg', 'Mezcla selecta de 80% lana de oveja virgen y 20% fibra de alpaca para mayor suavidad al tacto. Tejido de alto gramaje ideal para climas fríos.', '160 cm de ancho x 125 cm de largo.', 'https://wa.me/573000000000?text=Hola!%20Me%20gustar%C3%ADa%20encargar%20la%20Ruana%20Tierra%20de%20COP%20%24320%2C000')">
                         
-                        <div class="absolute inset-0 bg-carbon/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center">
-                            <span class="text-crema text-xs tracking-widest font-bold border border-crema px-4 py-2 uppercase bg-carbon/40 backdrop-blur-sm">VER DETALLES</span>
+                        <div class="absolute inset-4 border border-carbon/5 opacity-40 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="absolute inset-4 bg-carbon/45 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center">
+                            <span class="text-crema text-[10px] tracking-[0.3em] font-bold border border-crema/40 px-5 py-2.5 uppercase bg-carbon/30 backdrop-blur-sm transition-transform duration-500 translate-y-3 group-hover:translate-y-0">VER DETALLES</span>
                         </div>
                         
                         <img src="imagenes/ruana 2.jpg" 
-                             class="w-full h-[380px] md:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105" 
+                             class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105" 
                              alt="Ruana Tierra">
                     </div>
                     
-                    <h3 class="font-serif text-lg tracking-wide mb-1 text-carbon">RUANA TIERRA</h3>
-                    <span class="font-sans text-[11px] tracking-widest text-gray-500 mb-4">COP $320,000</span>
+                    <h3 class="font-serif text-xl tracking-wide mb-1 text-carbon">RUANA TIERRA</h3>
+                    <span class="font-sans text-[11px] tracking-[0.2em] text-gray-400 mb-5">COP $320,000</span>
                     
                     <a href="https://wa.me/573000000000?text=Hola!%20Me%20gustar%C3%ADa%20encargar%20la%20Ruana%20Tierra%20de%20COP%20%24320%2C000" 
                        target="_blank" 
-                       class="w-full bg-[#B8502C] hover:bg-[#a04323] text-white text-[10px] font-bold tracking-widest uppercase py-3 transition-colors duration-300 shadow-sm">
-                        PEDIR POR WHATSAPP →
+                       class="group relative overflow-hidden w-full bg-[#1C1611] text-crema text-[10px] font-bold tracking-[0.25em] uppercase py-4 transition-all duration-500 border border-carbon hover:text-carbon shadow-sm">
+                        <span class="relative z-10 transition-colors duration-500 group-hover:text-carbon">PEDIR POR WHATSAPP →</span>
+                        <span class="absolute inset-0 bg-crema translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0"></span>
                     </a>
                 </div>
 
                 <!-- Ruana 3 -->
-                <div class="group flex flex-col items-center text-center product-card">
-                    <div class="relative w-full overflow-hidden mb-6 bg-crema cursor-pointer"
+                <div class="product-card-wrapper group flex flex-col items-center text-center relative bg-cremaClaro p-2 border border-carbon/5 shadow-[0_15px_35px_rgba(28,22,17,0.03)]">
+                    <div class="relative w-full aspect-[3/4] overflow-hidden mb-6 bg-crema p-4 border border-carbon/5 shadow-sm cursor-pointer"
                          onclick="openRuanaModal('RUANA CLÁSICA', 'COP $260,000', 'imagenes/ruana 3.jpg', '100% Algodón orgánico premium de origen local. Tejido ligero y respirable, ideal para climas templados o temporadas de media estación.', '145 cm de ancho x 115 cm de largo.', 'https://wa.me/573000000000?text=Hola!%20Me%20gustar%C3%ADa%20encargar%20la%20Ruana%20Cl%C3%A1sica%20de%20COP%20%24260%2C000')">
                         
-                        <div class="absolute inset-0 bg-carbon/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center">
-                            <span class="text-crema text-xs tracking-widest font-bold border border-crema px-4 py-2 uppercase bg-carbon/40 backdrop-blur-sm">VER DETALLES</span>
+                        <div class="absolute inset-4 border border-carbon/5 opacity-40 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="absolute inset-4 bg-carbon/45 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center">
+                            <span class="text-crema text-[10px] tracking-[0.3em] font-bold border border-crema/40 px-5 py-2.5 uppercase bg-carbon/30 backdrop-blur-sm transition-transform duration-500 translate-y-3 group-hover:translate-y-0">VER DETALLES</span>
                         </div>
                         
                         <img src="imagenes/ruana 3.jpg" 
-                             class="w-full h-[380px] md:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105" 
+                             class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105" 
                              alt="Ruana Clásica">
                     </div>
                     
-                    <h3 class="font-serif text-lg tracking-wide mb-1 text-carbon">RUANA CLÁSICA</h3>
-                    <span class="font-sans text-[11px] tracking-widest text-gray-500 mb-4">COP $260,000</span>
+                    <h3 class="font-serif text-xl tracking-wide mb-1 text-carbon">RUANA CLÁSICA</h3>
+                    <span class="font-sans text-[11px] tracking-[0.2em] text-gray-400 mb-5">COP $260,000</span>
                     
                     <a href="https://wa.me/573000000000?text=Hola!%20Me%20gustar%C3%ADa%20encargar%20la%20Ruana%20Cl%C3%A1sica%20de%20COP%20%24260%2C000" 
                        target="_blank" 
-                       class="w-full bg-[#B8502C] hover:bg-[#a04323] text-white text-[10px] font-bold tracking-widest uppercase py-3 transition-colors duration-300 shadow-sm">
-                        PEDIR POR WHATSAPP →
+                       class="group relative overflow-hidden w-full bg-[#1C1611] text-crema text-[10px] font-bold tracking-[0.25em] uppercase py-4 transition-all duration-500 border border-carbon hover:text-carbon shadow-sm">
+                        <span class="relative z-10 transition-colors duration-500 group-hover:text-carbon">PEDIR POR WHATSAPP →</span>
+                        <span class="absolute inset-0 bg-crema translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0"></span>
                     </a>
                 </div>
 
             </div>
         </div>
 
-       <!-- 4.1 VENTANA MODAL FLOTANTE (Diseño Premium Rediseñado — Ajuste de Imagen Sin Espacios) -->
-        <div id="product-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-carbon/80 backdrop-blur-md opacity-0">
-            <div id="modal-card" class="bg-[#FAF9F6] max-w-3xl w-full rounded-sm overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] relative flex flex-col md:flex-row border border-carbon/5 max-h-[95vh] md:max-h-none overflow-y-auto md:overflow-y-visible transform opacity-0 translate-y-8">
+        <!-- 4.1 VENTANA MODAL FLOTANTE -->
+        <div id="product-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 md:p-6 bg-carbon/80 backdrop-blur-md opacity-0">
+            <div id="modal-card" class="bg-cremaClaro max-w-4xl w-full rounded-none overflow-hidden shadow-[0_30px_70px_-15px_rgba(0,0,0,0.5)] relative flex flex-col md:flex-row border border-carbon/10 max-h-[92vh] md:max-h-none overflow-y-auto md:overflow-y-visible transform opacity-0 translate-y-8">
                 
-                <!-- Botón de Cerrar Minimalista / Editorial -->
-                <button onclick="closeRuanaModal()" class="absolute top-6 right-6 z-20 text-carbon/60 hover:text-terracota transition-all duration-300 group flex items-center gap-2" aria-label="Cerrar ventana">
-                    <span class="text-[9px] tracking-[0.2em] uppercase font-semibold opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">Cerrar</span>
-                    <svg class="w-6 h-6 stroke-[1.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
+                <!-- Botón de Cerrar -->
+                <button onclick="closeRuanaModal()" class="absolute top-6 right-6 z-20 text-carbon/60 hover:text-terracota transition-all duration-300 group flex items-center gap-3" aria-label="Cerrar ventana">
+                    <span class="text-[9px] tracking-[0.25em] uppercase font-bold opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">Cerrar</span>
+                    <div class="w-8 h-8 rounded-full border border-carbon/10 flex items-center justify-center group-hover:border-terracota/30 transition-colors duration-300">
+                        <svg class="w-4 h-4 stroke-[1.5] transition-transform duration-500 group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </div>
                 </button>
 
-                <!-- Lado Izquierdo: Imagen del Producto (Ajuste Perfecto Sin Espacios) -->
-                <div class="w-full md:w-1/2 relative min-h-[320px] md:min-h-[480px] bg-crema">
-                    <!-- 
-                      Usar 'absolute' con 'inset-0' hace que la imagen rellene 
-                      automáticamente el alto exacto de la tarjeta, adaptándose al 100%
-                      de la columna de texto derecha sin importar su longitud.
-                    -->
-                    <img id="modal-img" src="" class="absolute inset-0 w-full h-full object-cover filter contrast-[1.02]" alt="Detalle de Ruana">
+                <!-- Lado Izquierdo: Imagen del Producto (Zoom Efecto) -->
+                <div class="w-full md:w-1/2 relative min-h-[300px] md:min-h-[520px] bg-crema zoom-container">
+                    <img id="modal-img" src="" class="absolute inset-0 w-full h-full object-cover filter contrast-[1.03] brightness-[0.98]" alt="Detalle de Ruana">
                 </div>
 
                 <!-- Lado Derecho: Información de Alta Gama -->
-                <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-between space-y-8">
+                <div class="w-full md:w-1/2 p-8 md:p-14 flex flex-col justify-between space-y-8">
                     
                     <div class="space-y-6">
                         <!-- Cabecera de la Tarjeta -->
                         <div class="flex justify-between items-center border-b border-carbon/10 pb-4">
                             <span class="text-[9px] tracking-[0.3em] text-terracota uppercase font-bold">Detalle de Origen</span>
-                            <span class="text-[9px] tracking-[0.1em] text-carbon/40 font-mono">RS-2026</span>
+                            <span class="text-[9px] tracking-[0.15em] text-carbon/40 font-mono">RS-2026</span>
                         </div>
                         
                         <!-- Título y Precio -->
                         <div class="space-y-2">
                             <h4 id="modal-title" class="font-serif text-3xl md:text-4xl text-carbon tracking-wide italic font-light"></h4>
-                            <p id="modal-price" class="font-sans text-[11px] tracking-widest text-carbon/60 font-semibold"></p>
+                            <p id="modal-price" class="font-sans text-xs tracking-widest text-carbon/70 font-semibold"></p>
                         </div>
                         
                         <!-- Detalles de materiales y medidas -->
                         <div class="space-y-5 pt-2">
                             <div class="border-b border-carbon/5 pb-4">
-                                <h5 class="text-[9px] tracking-[0.2em] uppercase font-bold text-carbon/40 mb-1">Materiales y Confección</h5>
+                                <h5 class="text-[9px] tracking-[0.2em] uppercase font-bold text-carbon/40 mb-1.5">Materiales y Confección</h5>
                                 <p id="modal-materials" class="text-xs text-carbon/80 leading-relaxed tracking-wide font-light"></p>
                             </div>
                             <div>
-                                <h5 class="text-[9px] tracking-[0.2em] uppercase font-bold text-carbon/40 mb-1">Medidas del Lienzo</h5>
+                                <h5 class="text-[9px] tracking-[0.2em] uppercase font-bold text-carbon/40 mb-1.5">Medidas del Lienzo</h5>
                                 <p id="modal-measurements" class="text-xs text-carbon/80 leading-relaxed tracking-wide font-light"></p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Botón de WhatsApp Premium (Transición a Café Oscuro) -->
-                    <a id="modal-wa-btn" href="" target="_blank" class="w-full bg-[#B8502C] hover:bg-[#2D2319] text-white text-[10px] font-bold tracking-[0.25em] uppercase py-4 text-center transition-colors duration-500 shadow-sm">
-                        ORDENAR POR WHATSAPP →
+                    <!-- Botón de WhatsApp Premium dentro del Modal -->
+                    <a id="modal-wa-btn" href="" target="_blank" class="group relative overflow-hidden w-full bg-[#1C1611] text-white text-[11px] font-bold tracking-[0.3em] uppercase py-5 text-center shadow-[0_15px_30px_rgba(28,22,17,0.12)] transition-all duration-500 border border-carbon hover:text-white">
+                        <span class="relative z-10 transition-transform duration-500 inline-flex items-center gap-3">
+                            ORDENAR POR WHATSAPP 
+                            <span class="inline-block transition-transform duration-500 ease-out group-hover:translate-x-2">→</span>
+                        </span>
+                        <span class="absolute inset-0 bg-[#B8502C] -translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0"></span>
                     </a>
                 </div>
 
@@ -333,8 +494,600 @@
         </div>
     </section>
 
-    <!-- Script con transiciones de GSAP fluidas -->
+    <!-- 5. VALORES CORPORATIVOS -->
+    <section class="bg-[#2D2319] text-crema py-24 px-6 md:px-12 border-b border-white/5 relative">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10 relative z-10">
+            
+            <!-- Hecho a Mano -->
+            <div class="flex flex-col items-center text-center px-6 py-8 md:py-4 value-card group transition-transform duration-500 hover:-translate-y-1">
+                <svg class="w-9 h-9 text-terracota mb-5 transition-transform duration-500 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <h4 class="font-serif text-xl tracking-[0.1em] mb-4 text-crema/90 group-hover:text-terracota transition-colors">HECHO A MANO</h4>
+                <p class="font-sans text-xs text-crema/60 tracking-[0.1em] leading-relaxed max-w-xs font-light">
+                    Cada pieza requiere horas de dedicación. No hay prisa en el telar; el ritmo lo marca la tradición y el respeto por el arte.
+                </p>
+            </div>
+
+            <!-- Exclusividad -->
+            <div class="flex flex-col items-center text-center px-6 py-8 md:py-4 value-card group transition-transform duration-500 hover:-translate-y-1">
+                <svg class="w-9 h-9 text-terracota mb-5 transition-transform duration-500 group-hover:scale-105" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+                <h4 class="font-serif text-xl tracking-[0.1em] mb-4 text-crema/90 group-hover:text-terracota transition-colors">EXCLUSIVIDAD</h4>
+                <p class="font-sans text-xs text-crema/60 tracking-[0.1em] leading-relaxed max-w-xs font-light">
+                    Al ser elaboradas artesanalmente, no existen dos prendas idénticas. Su ruana o estola es única, igual que usted.
+                </p>
+            </div>
+
+            <!-- Envíos -->
+            <div class="flex flex-col items-center text-center px-6 py-8 md:py-4 value-card group transition-transform duration-500 hover:-translate-y-1">
+                <svg class="w-9 h-9 text-terracota mb-5 transition-transform duration-500 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+                </svg>
+                <h4 class="font-serif text-xl tracking-[0.1em] mb-4 text-crema/90 group-hover:text-terracota transition-colors">ENVÍOS A TODO EL PAÍS</h4>
+                <p class="font-sans text-xs text-crema/60 tracking-[0.1em] leading-relaxed max-w-xs font-light">
+                    Llevamos el calor de nuestras montañas a cualquier rincón de Colombia. Compra segura y atención personalizada.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- NUEVO: GALERÍA DE INSPIRACIÓN (Sección 04) -->
+    <section id="galeria" class="py-28 md:py-36 bg-crema text-carbon relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-20 space-y-3">
+                <div class="flex justify-center items-center gap-3">
+                    <span class="font-mono text-xs text-terracota font-semibold">04 /</span>
+                    <span class="text-[10px] md:text-xs tracking-[0.4em] text-gray-500 uppercase font-bold">ATMÓSFERA ANDINA</span>
+                </div>
+                <h2 class="font-serif text-4xl md:text-6xl tracking-wide italic font-light">LA VIDA EN EL PÁRAMO</h2>
+            </div>
+
+            <!-- Cuadrícula Asimétrica Estilo Galería de Arte -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-stretch">
+                <!-- Imagen 1 (Grande vertical izquierda) -->
+                <div class="md:col-span-7 relative group overflow-hidden aspect-[4/5] md:aspect-auto md:min-h-[600px] border border-carbon/10 bg-cremaClaro">
+                    <img src="imagenes/1.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" alt="Tejido manual">
+                    <div class="absolute inset-0 bg-gradient-to-t from-carbon/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                        <span class="text-white font-serif text-lg tracking-wide">El calor del hilo artesanal.</span>
+                    </div>
+                </div>
+
+                <!-- Lado derecho: dos imágenes apiladas -->
+                <div class="md:col-span-5 flex flex-col gap-6 md:gap-8">
+                    <!-- Imagen 2 (Horizontal superior derecha) -->
+                    <div class="relative group overflow-hidden aspect-[3/2] border border-carbon/10 bg-cremaClaro">
+                        <img src="imagenes/ruana 2.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" alt="Ruana Tierra en paisaje">
+                        <div class="absolute inset-0 bg-gradient-to-t from-carbon/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                            <span class="text-white font-serif text-base tracking-wide">Diseñado con calma.</span>
+                        </div>
+                    </div>
+                    <!-- Imagen 3 (Horizontal inferior derecha) -->
+                    <div class="relative group overflow-hidden aspect-[3/2] border border-carbon/10 bg-cremaClaro">
+                        <img src="imagenes/ruana 3.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" alt="Detalle textil">
+                        <div class="absolute inset-0 bg-gradient-to-t from-carbon/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                            <span class="text-white font-serif text-base tracking-wide">Lana virgen seleccionada.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. SECCIÓN TESTIMONIOS -->
+    <section id="testimonios" class="py-28 md:py-36 bg-cremaClaro border-t border-b border-carbon/5 flex flex-col items-center overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 md:px-12 w-full">
+            
+            <div class="text-center mb-20 space-y-3">
+                <div class="flex justify-center items-center gap-3">
+                    <span class="font-mono text-xs text-terracota font-semibold">05 /</span>
+                    <span class="text-[10px] md:text-xs tracking-[0.4em] text-terracota uppercase font-bold">EXPERIENCIAS REALES</span>
+                </div>
+                <h2 class="font-serif text-3xl md:text-5xl text-carbon tracking-wider uppercase italic font-light">LO QUE DICEN NUESTROS CLIENTES</h2>
+            </div>
+
+            <!-- Grilla de Testimonios -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Testimonio 1 -->
+                <div class="bg-crema border border-carbon/5 p-10 flex flex-col justify-between min-h-[280px] shadow-[0_15px_35px_rgba(28,22,17,0.03)] relative testimonial-card group hover:shadow-md transition-shadow duration-500">
+                    <span class="absolute top-4 right-8 font-serif text-[10rem] text-carbon/[0.03] pointer-events-none select-none leading-none">“</span>
+                    
+                    <div class="relative z-10">
+                        <div class="flex gap-1.5 mb-5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                        </div>
+                        <p class="font-sans italic text-xs md:text-sm text-gray-600 leading-relaxed tracking-wider">
+                            "Compré una Ruana Tierra y no me la he quitado desde que llegó. La calidad de la lana y el detalle en el tejido son inigualables. Se siente el trabajo artesanal."
+                        </p>
+                    </div>
+                    <div class="mt-8 border-t border-carbon/5 pt-4">
+                        <h4 class="font-serif text-sm tracking-[0.15em] text-terracota uppercase font-bold">MARÍA FERNANDA V.</h4>
+                        <span class="text-[10px] tracking-[0.15em] text-gray-400 font-semibold font-mono">BOGOTÁ</span>
+                    </div>
+                </div>
+
+                <!-- Testimonio 2 -->
+                <div class="bg-crema border border-carbon/5 p-10 flex flex-col justify-between min-h-[280px] shadow-[0_15px_35px_rgba(28,22,17,0.03)] relative testimonial-card group hover:shadow-md transition-shadow duration-500">
+                    <span class="absolute top-4 right-8 font-serif text-[10rem] text-carbon/[0.03] pointer-events-none select-none leading-none">“</span>
+                    
+                    <div class="relative z-10">
+                        <div class="flex gap-1.5 mb-5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                        </div>
+                        <p class="font-sans italic text-xs md:text-sm text-gray-600 leading-relaxed tracking-wider">
+                            "Un servicio excepcional por WhatsApp. Me asesoraron con la talla y los colores de las estolas. El paquete llegó impecable y es aún más hermoso en persona."
+                        </p>
+                    </div>
+                    <div class="mt-8 border-t border-carbon/5 pt-4">
+                        <h4 class="font-serif text-sm tracking-[0.15em] text-terracota uppercase font-bold">CAROLINA R.</h4>
+                        <span class="text-[10px] tracking-[0.15em] text-gray-400 font-semibold font-mono">MEDELLÍN</span>
+                    </div>
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="bg-crema border border-carbon/5 p-10 flex flex-col justify-between min-h-[280px] shadow-[0_15px_35px_rgba(28,22,17,0.03)] relative testimonial-card group hover:shadow-md transition-shadow duration-500">
+                    <span class="absolute top-4 right-8 font-serif text-[10rem] text-carbon/[0.03] pointer-events-none select-none leading-none">“</span>
+                    
+                    <div class="relative z-10">
+                        <div class="flex gap-1.5 mb-5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-terracota/60"></span>
+                        </div>
+                        <p class="font-sans italic text-xs md:text-sm text-gray-600 leading-relaxed tracking-wider">
+                            "Regalé unos guantes y un gorro a mi esposo para nuestro viaje. La calidez y el estilo que tienen estas prendas demuestran que lo hecho en Colombia es de lujo."
+                        </p>
+                    </div>
+                    <div class="mt-8 border-t border-carbon/5 pt-4">
+                        <h4 class="font-serif text-sm tracking-[0.15em] text-terracota uppercase font-bold">ANDREA M.</h4>
+                        <span class="text-[10px] tracking-[0.15em] text-gray-400 font-semibold font-mono">TUNJA</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- NUEVO: FORMULARIO DE CONSULTA / ASESORÍA PERSONALIZADA (Sección 06) -->
+    <section id="contacto" class="py-28 md:py-36 bg-crema text-carbon relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center mb-16 space-y-3">
+                <div class="flex justify-center items-center gap-3">
+                    <span class="font-mono text-xs text-terracota font-semibold">06 /</span>
+                    <span class="text-[10px] md:text-xs tracking-[0.4em] text-gray-500 uppercase font-bold">ASESORÍA PERSONALIZADA</span>
+                </div>
+                <h2 class="font-serif text-4xl md:text-6xl tracking-wide italic font-light">¿DESEAS UNA PIEZA ÚNICA?</h2>
+                <p class="font-sans text-xs md:text-sm text-gray-500 max-w-lg mx-auto tracking-wider leading-relaxed">
+                    Si deseas consultarnos sobre medidas especiales, colores agotados o pedidos corporativos, escríbenos a continuación y te responderemos a la mayor brevedad.
+                </p>
+            </div>
+
+            <!-- Formulario Elegantemente Diseñado -->
+            <form id="contact-form" class="space-y-8 bg-cremaClaro p-8 md:p-12 border border-carbon/5 shadow-sm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Nombre -->
+                    <div class="flex flex-col space-y-2">
+                        <label for="form-name" class="text-[9px] tracking-[0.2em] font-bold uppercase text-carbon/55">Nombre Completo *</label>
+                        <input type="text" id="form-name" required class="bg-transparent border-b border-carbon/20 focus:border-terracota outline-none py-2 text-sm tracking-wide transition-colors duration-300 font-light">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="flex flex-col space-y-2">
+                        <label for="form-email" class="text-[9px] tracking-[0.2em] font-bold uppercase text-carbon/55">Correo Electrónico *</label>
+                        <input type="email" id="form-email" required class="bg-transparent border-b border-carbon/20 focus:border-terracota outline-none py-2 text-sm tracking-wide transition-colors duration-300 font-light">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Teléfono -->
+                    <div class="flex flex-col space-y-2">
+                        <label for="form-phone" class="text-[9px] tracking-[0.2em] font-bold uppercase text-carbon/55">Teléfono / WhatsApp</label>
+                        <input type="tel" id="form-phone" class="bg-transparent border-b border-carbon/20 focus:border-terracota outline-none py-2 text-sm tracking-wide transition-colors duration-300 font-light">
+                    </div>
+
+                    <!-- Interés -->
+                    <div class="flex flex-col space-y-2">
+                        <label for="form-interest" class="text-[9px] tracking-[0.2em] font-bold uppercase text-carbon/55">Prenda de Interés *</label>
+                        <select id="form-interest" required class="bg-transparent border-b border-carbon/20 focus:border-terracota outline-none py-2 text-sm tracking-wide transition-colors duration-300 font-light text-carbon/80 cursor-pointer">
+                            <option value="" disabled selected class="bg-crema text-carbon">Selecciona una opción</option>
+                            <option value="Ruana Andina" class="bg-crema text-carbon">Ruana Andina</option>
+                            <option value="Ruana Tierra" class="bg-crema text-carbon">Ruana Tierra</option>
+                            <option value="Ruana Clásica" class="bg-crema text-carbon">Ruana Clásica</option>
+                            <option value="Encargo Personalizado" class="bg-crema text-carbon">Encargo Personalizado / Especial</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Mensaje -->
+                <div class="flex flex-col space-y-2">
+                    <label for="form-message" class="text-[9px] tracking-[0.2em] font-bold uppercase text-carbon/55">Detalle de su Consulta o Encargo *</label>
+                    <textarea id="form-message" rows="4" required class="bg-transparent border-b border-carbon/20 focus:border-terracota outline-none py-2 text-sm tracking-wide transition-colors duration-300 font-light resize-none"></textarea>
+                </div>
+
+                <!-- Botón de Envío -->
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-[#1C1611] text-crema text-[11px] font-bold tracking-[0.3em] uppercase py-5 border border-carbon hover:bg-transparent hover:text-carbon transition-colors duration-500 shadow-sm">
+                        ENVIAR SOLICITUD DE ASESORÍA
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- NOTIFICACIÓN DE ENVÍO EXITOSO (TOAST FLOATING) -->
+    <div id="toast-success" class="fixed bottom-6 left-6 z-50 bg-[#2D2319] text-crema px-8 py-5 shadow-2xl border border-white/10 hidden items-center gap-4 transition-all duration-500 transform translate-y-20 opacity-0 max-w-sm">
+        <div class="w-6 h-6 rounded-full bg-terracota flex items-center justify-center text-white font-bold text-xs">✓</div>
+        <div>
+            <p class="text-[10px] tracking-widest font-bold uppercase text-terracota">Mensaje Recibido</p>
+            <p class="text-xs text-crema/70 tracking-wider mt-0.5">Nos comunicaremos pronto con usted.</p>
+        </div>
+    </div>
+
+    <!-- 8. FOOTER (Fondo Oscuro Premium) -->
+    <footer class="bg-carbon text-crema pt-24 pb-12 px-6 md:px-12 border-t border-white/5 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 pb-16 border-b border-crema/10">
+            
+            <!-- Marca -->
+            <div class="space-y-6">
+                <h3 class="font-serif text-2xl md:text-3xl tracking-[0.15em] text-crema italic font-light">ROSSI & SORATE</h3>
+                <p class="font-sans text-xs text-crema/60 leading-relaxed tracking-wider max-w-xs font-light">
+                    Tejido de origen. Llevando la tradición artesanal textil de Colombia a tu guardarropa.
+                </p>
+            </div>
+
+            <!-- Contacto -->
+            <div class="space-y-6">
+                <h4 class="font-serif text-xs text-terracota tracking-[0.3em] uppercase font-bold">CONTACTO</h4>
+                <ul class="font-sans text-xs text-crema/70 space-y-3.5 tracking-wider font-light">
+                    <li>Atención personalizada vía WhatsApp</li>
+                    <li>Lunes a Sábado, 9:00 AM - 6:00 PM</li>
+                    <li class="pt-2">
+                        <a href="https://wa.me/573000000000" target="_blank" class="border-b border-crema/30 hover:border-terracota hover:text-terracota font-medium transition-colors pb-1 inline-block">
+                            Escríbenos al WhatsApp
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Políticas -->
+            <div class="space-y-6">
+                <h4 class="font-serif text-xs text-terracota tracking-[0.3em] uppercase font-bold">POLÍTICAS</h4>
+                <ul class="font-sans text-xs text-crema/70 space-y-3 tracking-wider font-light">
+                    <li><a href="#" class="hover:text-terracota transition-colors block">Envíos y Entregas</a></li>
+                    <li><a href="#" class="hover:text-terracota transition-colors block">Cambios y Devoluciones</a></li>
+                    <li><a href="#" class="hover:text-terracota transition-colors block">Cuidado de las prendas</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Derechos Reservados -->
+        <div class="max-w-6xl mx-auto pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] tracking-[0.2em] text-crema/40 uppercase">
+            <span>© 2026 Rossi & Sorate. Todos los derechos reservados.</span>
+            <span class="hover:text-crema transition-colors">Diseñado con intención en Colombia.</span>
+        </div>
+    </footer>
+
+    <!-- LIBRERÍAS (CDNs) -->
+    <!-- GSAP principal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- GSAP ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Scroll Suave -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- LÓGICA DE INTERACCIONES Y ANIMACIONES -->
     <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 0. Preloader fade-out al cargar la ventana
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('loader');
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.visibility = 'hidden';
+            }, 800);
+        });
+
+        // 1. Inicialización de Lenis (Scroll Suave)
+        const lenis = new Lenis({
+            duration: 1.3,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            wheelMultiplier: 0.95,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Sincronización de Lenis con ScrollTrigger
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+
+
+        // 2. Control de Navbar Inteligente (Show/Hide al Scroll)
+        let lastScrollY = window.scrollY;
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY && window.scrollY > 150) {
+                gsap.to(navbar, { y: '-100%', duration: 0.4, ease: 'power2.out' });
+            } else {
+                gsap.to(navbar, { y: '0%', duration: 0.4, ease: 'power2.out' });
+            }
+            lastScrollY = window.scrollY;
+        });
+
+
+        // 3. Barra de Progreso de Lectura
+        gsap.to("#scroll-progress", {
+            width: "100%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: true
+            }
+        });
+
+
+        // 4. Mapeo Seguro de Enlaces Internos con Scroll de Lenis
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#') {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        lenis.scrollTo(targetElement, {
+                            offset: -90, 
+                            duration: 1.2,
+                            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                        });
+                    }
+                }
+            });
+        });
+
+
+        // 5. Efecto Físico Magnético en Botones Premium
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        if (window.innerWidth > 768) {
+            magneticBtns.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const bound = btn.getBoundingClientRect();
+                    const x = e.clientX - bound.left - bound.width / 2;
+                    const y = e.clientY - bound.top - bound.height / 2;
+                    gsap.to(btn, { x: x * 0.22, y: y * 0.22, duration: 0.3, ease: "power2.out" });
+                });
+                btn.addEventListener('mouseleave', () => {
+                    gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1.1, 0.4)" });
+                });
+            });
+        }
+
+
+        // 6. Menú de Pantalla Completa para Móviles
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const bar1 = document.getElementById('bar1');
+        const bar2 = document.getElementById('bar2');
+        const bar3 = document.getElementById('bar3');
+        let isMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                gsap.to(mobileMenu, { opacity: 1, duration: 0.4, ease: "power2.out" });
+                gsap.fromTo(".mobile-nav-link", 
+                    { y: 30, opacity: 0 }, 
+                    { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "power3.out", delay: 0.1 }
+                );
+                gsap.to(bar1, { rotation: 45, y: 7.5, duration: 0.3 });
+                gsap.to(bar2, { opacity: 0, duration: 0.3 });
+                gsap.to(bar3, { rotation: -45, y: -7.5, duration: 0.3 });
+                lenis.stop();
+            } else {
+                closeMobileMenu();
+            }
+        });
+
+        function closeMobileMenu() {
+            isMenuOpen = false;
+            gsap.to(mobileMenu, { opacity: 0, duration: 0.3, ease: "power2.in", onComplete: () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            }});
+            gsap.to(bar1, { rotation: 0, y: 0, duration: 0.3 });
+            gsap.to(bar2, { opacity: 1, duration: 0.3 });
+            gsap.to(bar3, { rotation: 0, y: 0, duration: 0.3 });
+            lenis.start();
+        }
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+
+
+        // 7. Animación de Entrada de Carga del Hero
+        const tlHero = gsap.timeline();
+        tlHero.to("#hero-sub", { opacity: 1, y: 0, duration: 1, ease: "power3.out" })
+              .to("#hero-title", { opacity: 1, y: 0, duration: 1.4, ease: "power3.out" }, "-=0.75")
+              .to("#hero-desc", { opacity: 1, y: 0, duration: 1.4, ease: "power3.out" }, "-=1")
+              .to("#hero-cta", { opacity: 1, y: 0, duration: 1.2, ease: "power2.out" }, "-=0.9");
+
+
+        // 8. Parallax del Video del Hero al hacer Scroll
+        gsap.to("#hero-video", {
+            scrollTrigger: {
+                trigger: "section",
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+            },
+            yPercent: 12,
+            ease: "none"
+        });
+
+
+        // 9. Efectos Parallax y de Entrada para "Nuestra Historia"
+        gsap.to("#historia-img", {
+            scrollTrigger: {
+                trigger: "#origen",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+            },
+            yPercent: 15,
+            ease: "none"
+        });
+
+        gsap.from("#historia-img-wrapper", {
+            scrollTrigger: {
+                trigger: "#origen",
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+            },
+            x: -30,
+            opacity: 0,
+            duration: 1.4,
+            ease: "power3.out"
+        });
+
+        gsap.from("#historia-text", {
+            scrollTrigger: {
+                trigger: "#origen",
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+            },
+            x: 30,
+            opacity: 0,
+            duration: 1.4,
+            ease: "power3.out"
+        });
+
+        // 9.1 Revelación escalonada de "El Proceso"
+        gsap.from("#proceso h2, #proceso span", {
+            scrollTrigger: {
+                trigger: "#proceso",
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+            },
+            y: 30,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: "power3.out"
+        });
+
+
+        // 10. Revelación escalonada de las tarjetas de ruanas
+        gsap.from(".product-card-wrapper", {
+            scrollTrigger: {
+                trigger: "#coleccion",
+                start: "top 75%",
+                toggleActions: "play none none reverse",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1.3,
+            stagger: 0.18,
+            ease: "power3.out"
+        });
+
+
+        // 11. Revelación escalonada de las tarjetas de valores
+        gsap.from(".value-card", {
+            scrollTrigger: {
+                trigger: ".value-card",
+                start: "top 90%",
+                toggleActions: "play none none reverse",
+            },
+            y: 35,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power3.out"
+        });
+
+
+        // 12. Animación suave para los Testimonios
+        gsap.from(".testimonial-card", {
+            scrollTrigger: {
+                trigger: "#testimonios",
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+            },
+            y: 40,
+            opacity: 0,
+            duration: 1.3,
+            stagger: 0.15,
+            ease: "power3.out"
+        });
+
+
+        // 13. Manejo del Formulario de Contacto (Toast flotante)
+        const contactForm = document.getElementById('contact-form');
+        const successToast = document.getElementById('toast-success');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Desencadenar animación de notificación flotante exitosa
+            successToast.classList.remove('hidden');
+            successToast.classList.add('flex');
+
+            gsap.to(successToast, {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                ease: "power3.out"
+            });
+
+            // Ocultar notificación tras 5 segundos
+            setTimeout(() => {
+                gsap.to(successToast, {
+                    y: 100,
+                    opacity: 0,
+                    duration: 0.6,
+                    ease: "power3.in",
+                    onComplete: () => {
+                        successToast.classList.add('hidden');
+                        successToast.classList.remove('flex');
+                    }
+                });
+            }, 5000);
+
+            contactForm.reset();
+        });
+
+
+        // 14. Lógica del Modal del Producto
         function openRuanaModal(title, price, imageSrc, materials, measurements, waUrl) {
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-price').innerText = price;
@@ -364,7 +1117,7 @@
         function closeRuanaModal() {
             const modal = document.getElementById('product-modal');
             
-            // Reactivar el scroll de Lenis inmediatamente para evitar retrasos
+            // Reactivar el scroll de Lenis
             if (typeof lenis !== 'undefined') {
                 lenis.start();
             }
@@ -389,273 +1142,21 @@
             });
         }
 
-        // Cerrar modal al hacer clic en el fondo difuminado
+        // Cerrar modal al hacer clic en el fondo o al presionar la tecla Escape (Accesibilidad)
         window.addEventListener('click', function(event) {
             const modal = document.getElementById('product-modal');
             if (event.target === modal) {
                 closeRuanaModal();
             }
         });
-    </script>
 
-    <!-- 5. VALORES CORPORATIVOS (Fondo Oscuro) -->
-    <section class="bg-carbonFondo text-crema py-16 px-6 md:px-12 border-b border-white/5">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
-            
-            <!-- Hecho a Mano -->
-            <div class="flex flex-col items-center text-center px-4 py-6 md:py-0 value-card">
-                <!-- Icono de Reloj -->
-                <svg class="w-8 h-8 text-terracota mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                <h4 class="font-serif text-lg tracking-wider mb-3">HECHO A MANO</h4>
-                <p class="font-sans text-xs text-crema/70 tracking-wider leading-relaxed max-w-xs">
-                    Cada pieza requiere horas de dedicación. No hay prisa en el telar; el ritmo lo marca la tradición y el respeto por el arte.
-                </p>
-            </div>
-
-            <!-- Exclusividad -->
-            <div class="flex flex-col items-center text-center px-4 py-6 md:py-0 value-card">
-                <!-- Icono de Escudo con Check -->
-                <svg class="w-8 h-8 text-terracota mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                </svg>
-                <h4 class="font-serif text-lg tracking-wider mb-3">EXCLUSIVIDAD</h4>
-                <p class="font-sans text-xs text-crema/70 tracking-wider leading-relaxed max-w-xs">
-                    Al ser elaboradas artesanalmente, no existen dos prendas idénticas. Su ruana o estola es única, igual que usted.
-                </p>
-            </div>
-
-            <!-- Envíos -->
-            <div class="flex flex-col items-center text-center px-4 py-6 md:py-0 value-card">
-                <!-- Icono de Envío / Camión -->
-                <svg class="w-8 h-8 text-terracota mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0"/>
-                </svg>
-                <h4 class="font-serif text-lg tracking-wider mb-3">ENVÍOS A TODO EL PAÍS</h4>
-                <p class="font-sans text-xs text-crema/70 tracking-wider leading-relaxed max-w-xs">
-                    Llevamos el calor de nuestras montañas a cualquier rincón de Colombia. Compra segura y atención personalizada.
-                </p>
-            </div>
-
-        </div>
-    </section>
-
-    
-
-    <!-- 7. SECCIÓN TESTIMONIOS (Fondo Claro) -->
-    <section id="testimonios" class="py-24 md:py-32 bg-crema flex flex-col items-center">
-        <div class="max-w-6xl mx-auto px-6 md:px-12 w-full">
-            
-            <div class="text-center mb-16 space-y-2">
-                <h2 class="font-serif text-3xl md:text-5xl text-carbon tracking-wide uppercase">LO QUE DICEN NUESTROS CLIENTES</h2>
-                <p class="text-[10px] md:text-xs tracking-[0.3em] text-terracota uppercase font-semibold">EXPERIENCIAS REALES</p>
-            </div>
-
-            <!-- Grilla de Testimonios -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <!-- Testimonio 1 -->
-                <div class="bg-cremaClaro border border-carbon/5 p-8 flex flex-col justify-between min-h-[220px] shadow-sm testimonial-card">
-                    <p class="font-sans italic text-xs md:text-sm text-gray-600 leading-relaxed tracking-wide">
-                        "Compré una Ruana Tierra y no me la he quitado desde que llegó. La calidad de la lana y el detalle en el tejido son inigualables. Se siente el trabajo artesanal."
-                    </p>
-                    <div class="mt-6">
-                        <h4 class="font-serif text-sm tracking-widest text-terracota uppercase font-semibold">MARÍA FERNANDA V.</h4>
-                        <span class="text-[10px] tracking-wider text-gray-400 font-medium">BOGOTÁ</span>
-                    </div>
-                </div>
-
-                <!-- Testimonio 2 -->
-                <div class="bg-cremaClaro border border-carbon/5 p-8 flex flex-col justify-between min-h-[220px] shadow-sm testimonial-card">
-                    <p class="font-sans italic text-xs md:text-sm text-gray-600 leading-relaxed tracking-wide">
-                        "Un servicio excepcional por WhatsApp. Me asesoraron con la talla y los colores de las estolas. El paquete llegó impecable y es aún más hermoso en persona."
-                    </p>
-                    <div class="mt-6">
-                        <h4 class="font-serif text-sm tracking-widest text-terracota uppercase font-semibold">CAROLINA R.</h4>
-                        <span class="text-[10px] tracking-wider text-gray-400 font-medium">MEDELLÍN</span>
-                    </div>
-                </div>
-
-                <!-- Testimonio 3 -->
-                <div class="bg-cremaClaro border border-carbon/5 p-8 flex flex-col justify-between min-h-[220px] shadow-sm testimonial-card">
-                    <p class="font-sans italic text-xs md:text-sm text-gray-600 leading-relaxed tracking-wide">
-                        "Regalé unos guantes y un gorro a mi esposo para nuestro viaje. La calidez y el estilo que tienen estas prendas demuestran que lo hecho en Colombia es de lujo."
-                    </p>
-                    <div class="mt-6">
-                        <h4 class="font-serif text-sm tracking-widest text-terracota uppercase font-semibold">ANDREA M.</h4>
-                        <span class="text-[10px] tracking-wider text-gray-400 font-medium">TUNJA</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 8. FOOTER (Fondo Oscuro) -->
-    <footer class="bg-carbon text-crema pt-20 pb-10 px-6 md:px-12 border-t border-white/5">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 pb-16 border-b border-crema/10">
-            
-            <!-- Marca -->
-            <div class="space-y-4">
-                <h3 class="font-serif text-2xl md:text-3xl tracking-wider text-crema">ROSSI & SORATE</h3>
-                <p class="font-sans text-xs text-crema/60 leading-relaxed tracking-wide max-w-sm">
-                    Tejido de origen. Llevando la tradición artesanal textil de Colombia a tu guardarropa.
-                </p>
-            </div>
-
-            <!-- Contacto -->
-            <div class="space-y-4">
-                <h4 class="font-serif text-xs text-terracota tracking-[0.2em] uppercase font-bold">CONTACTO</h4>
-                <ul class="font-sans text-xs text-crema/70 space-y-2 tracking-wide">
-                    <li>Atención personalizada vía WhatsApp</li>
-                    <li>Lunes a Sábado, 9:00 AM - 6:00 PM</li>
-                    <li class="pt-2">
-                        <a href="https://wa.me/573000000000" target="_blank" class="border-b border-crema hover:border-terracota text-crema hover:text-terracota font-medium transition-colors pb-1">
-                            Escríbenos al WhatsApp
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Políticas -->
-            <div class="space-y-4">
-                <h4 class="font-serif text-xs text-terracota tracking-[0.2em] uppercase font-bold">POLÍTICAS</h4>
-                <ul class="font-sans text-xs text-crema/70 space-y-2 tracking-wide">
-                    <li><a href="#" class="hover:text-terracota transition-colors">Envíos y Entregas</a></li>
-                    <li><a href="#" class="hover:text-terracota transition-colors">Cambios y Devoluciones</a></li>
-                    <li><a href="#" class="hover:text-terracota transition-colors">Cuidado de las prendas</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        <!-- Derechos Reservados -->
-        <div class="max-w-6xl mx-auto pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] tracking-widest text-crema/40 uppercase">
-            <span>© 2026 Rossi & Sorate. Todos los derechos reservados.</span>
-            <span>Diseñado con intención en Colombia.</span>
-        </div>
-    </footer>
-
-    <!-- LIBRERÍAS (CDNs) -->
-    <!-- GSAP principal -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <!-- GSAP ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <!-- Lenis Scroll Suave -->
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-
-    <!-- LÓGICA DE ANIMACIONES -->
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        // 1. Inicialización de Lenis (Scroll Suave)
-        const lenis = new Lenis({
-            duration: 1.4,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smoothWheel: true,
-            wheelMultiplier: 0.9,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // Vincular Lenis con ScrollTrigger
-        lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
-        });
-        gsap.ticker.lagSmoothing(0);
-
-        // 2. Animación de Entrada del Hero (Carga Inicial)
-        const tlHero = gsap.timeline();
-        tlHero.to("#hero-sub", { opacity: 1, y: 0, duration: 1, ease: "power3.out" })
-              .to("#hero-title", { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }, "-=0.7")
-              .to("#hero-desc", { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }, "-=0.9")
-              .to("#hero-cta", { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, "-=0.8");
-
-        // 3. Animaciones al hacer Scroll en la sección "Historia"
-        gsap.from("#historia-img", {
-            scrollTrigger: {
-                trigger: "#origen",
-                start: "top 75%",
-                toggleActions: "play none none reverse",
-            },
-            x: -30,
-            opacity: 0,
-            duration: 1.4,
-            ease: "power3.out"
-        });
-
-        gsap.from("#historia-text", {
-            scrollTrigger: {
-                trigger: "#origen",
-                start: "top 75%",
-                toggleActions: "play none none reverse",
-            },
-            x: 30,
-            opacity: 0,
-            duration: 1.4,
-            ease: "power3.out"
-        });
-
-        // 4. Revelación escalonada de las tarjetas de ruanas (Stagger effect)
-        gsap.from(".product-card", {
-            scrollTrigger: {
-                trigger: "#coleccion",
-                start: "top 70%",
-                toggleActions: "play none none reverse",
-            },
-            y: 50,
-            opacity: 0,
-            duration: 1.2,
-            stagger: 0.2,
-            ease: "power3.out"
-        });
-
-        // 5. Revelación escalonada de las tarjetas AR y valores
-        gsap.from(".value-card", {
-            scrollTrigger: {
-                trigger: ".value-card",
-                start: "top 85%",
-                toggleActions: "play none none reverse",
-            },
-            y: 30,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.15,
-            ease: "power3.out"
-        });
-
-        gsap.from(".ar-card", {
-            scrollTrigger: {
-                trigger: "#ar",
-                start: "top 75%",
-                toggleActions: "play none none reverse",
-            },
-            y: 40,
-            opacity: 0,
-            duration: 1.2,
-            stagger: 0.2,
-            ease: "power3.out"
-        });
-
-        // 6. Animaciones de Testimonios
-        gsap.from(".testimonial-card", {
-            scrollTrigger: {
-                trigger: "#testimonios",
-                start: "top 75%",
-                toggleActions: "play none none reverse",
-            },
-            y: 30,
-            opacity: 0,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "power3.out"
+        window.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                const modal = document.getElementById('product-modal');
+                if (!modal.classList.contains('hidden')) {
+                    closeRuanaModal();
+                }
+            }
         });
     </script>
 </body>
